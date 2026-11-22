@@ -1,23 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
-
-// The home route ships no og:image, so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
-export const Route = createFileRoute("/")({
-  component: Index,
-});
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
+import {createFileRoute,Link} from '@tanstack/react-router';
+import {CalendarDays,Users,Flower2,CheckCircle2,Receipt,Wallet,Plus,ArrowRight,ChevronRight,Clock,Leaf,TrendingUp} from 'lucide-react';
+import {Button} from '@/components/ui/button';
+import {PageHeading,VisitTable,SessionCard,pageHead} from '@/components/spa-shared';
+import {useSpa} from '@/lib/spa-context';
+import {today,money,totals,branches} from '@/lib/spa-model';
+export const Route=createFileRoute('/')({head:()=>pageHead('Dashboard','Your BODE branch schedule, active treatments and daily operations.'),component:Dashboard});
+function Dashboard(){const {manager,visits,data}=useSpa();if(!manager)return null;const dayVisits=visits.filter(v=>v.date===today());const active=visits.filter(v=>v.status==='In Progress');const completed=dayVisits.filter(v=>v.status==='Completed');const pending=visits.filter(v=>v.status==='Completed'&&!v.invoiceNumber);const outstanding=visits.filter(v=>v.invoiceNumber).reduce((n,v)=>n+totals(v).balance,0);const metrics=[{label:"Today's Appointments",value:dayVisits.length,icon:CalendarDays,note:'Scheduled & walk-in visits'},{label:"Today's Customers",value:new Set(dayVisits.map(v=>v.customerId)).size,icon:Users,note:'A day of thoughtful care'},{label:'Active Services',value:active.length,icon:Flower2,note:'Treatments in progress'},{label:'Completed Services',value:completed.length,icon:CheckCircle2,note:'Guests cared for today'},{label:'Pending Invoices',value:pending.length,icon:Receipt,note:'Ready for final billing'},{label:'Outstanding Payments',value:money(outstanding),icon:Wallet,note:'Across open invoices'}];return <><PageHeading eyebrow={new Date().toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).toUpperCase()} title={`Good ${new Date().getHours()<12?'morning':new Date().getHours()<17?'afternoon':'evening'}, ${manager.name.split(' ')[0]}.`} description="Here’s what’s happening at your branch today."><Button asChild className="h-10"><Link to="/create-service"><Plus/>Create New Service</Link></Button></PageHeading><div className="metric-grid">{metrics.map(m=><div className="panel metric" key={m.label}><div className="flex justify-between"><div className="metric-icon"><m.icon size={17} strokeWidth={1.6}/></div><span className="text-muted-foreground text-xs">↗</span></div><div className="metric-label">{m.label}</div><div className="metric-value">{m.value}</div><div className="metric-note">{m.note}</div></div>)}</div><div className="dashboard-grid"><div className="min-w-0"><section className="panel"><div className="panel-heading"><div><h2>Today’s Schedule <span className="font-sans text-[10px] text-muted-foreground ml-2">{dayVisits.length} appointments</span></h2><p className="text-[10px] text-muted-foreground mt-1">A seamless day, one guest at a time.</p></div><Button asChild variant="link" size="sm"><Link to="/appointments">View all <ArrowRight/></Link></Button></div><VisitTable compact visits={[...dayVisits].sort((a,b)=>a.time.localeCompare(b.time)).slice(0,5)}/></section><section className="panel mt-6"><div className="panel-heading"><h2>Active Services <span className="font-sans text-[10px] text-muted-foreground ml-2">{active.length} in progress</span></h2><Button asChild variant="link" size="sm"><Link to="/active-services">View all <ArrowRight/></Link></Button></div><div className="session-grid">{active.slice(0,3).map(v=><SessionCard visit={v} key={v.id}/>)}</div>{active.length===0&&<p className="empty">No treatments in progress.</p>}</section></div><aside className="dashboard-aside"><div><section className="panel"><div className="panel-heading"><h2>Quick Actions</h2><Plus size={16} className="text-gold"/></div>{[{to:'/create-service',label:'Create New Service',icon:Plus},{to:'/appointments',label:'View Appointments',icon:CalendarDays},{to:'/active-services',label:'Manage Active Services',icon:Flower2},{to:'/invoices',label:'Generate Invoice',icon:Receipt}].map(a=><Button key={a.to} asChild variant="ghost" className="quick-link"><Link to={a.to as '/create-service'|'/appointments'|'/active-services'|'/invoices'}><span className="flex gap-3 items-center"><a.icon size={15} className="text-primary"/>{a.label}</span><ChevronRight size={14} className="text-muted-foreground"/></Link></Button>)}</section><section className="panel mt-6"><div className="panel-heading"><h2>Recent Activity</h2><Clock size={15} className="text-muted-foreground"/></div>{data.activity.filter(a=>a.branchId===manager.branchId).slice(0,4).map((a,i)=><div className="activity-item" key={a.id}><div className="activity-dot">{i%2===0?<Flower2 size={13}/>:<Receipt size={13}/>}</div><div><p>{a.text}</p><small>{a.time} · Today</small></div></div>)}</section></div><div className="branch-summary"><div className="eyebrow text-gold">YOUR BRANCH</div><h2>{branches[manager.branchId].name}</h2><p className="mt-1">{branches[manager.branchId].area}</p><div className="border-t border-primary-foreground/20 mt-5 pt-4 flex items-center gap-2 text-[10px]"><span className="w-1.5 h-1.5 bg-gold rounded-full"/> Open for a wonderful day</div><Leaf className="leaf-watermark" strokeWidth={.7}/></div></aside></div></>}

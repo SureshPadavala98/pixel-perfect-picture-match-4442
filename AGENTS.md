@@ -28,3 +28,10 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Portal architecture
+- Keep mock authentication and branch-scoped records in the shared SpaProvider; this frontend-only portal intentionally has no live account service.
+- Use one visit model with independent treatment, invoice, sharing and payment fields; all screens derive balances from the shared calculation module to avoid duplicate advance credits.
+- Keep editable catalogue, billing configuration and demo accounts in spa-model; snapshot treatment prices when adding them to preserve history.
+- Use top-level TanStack routes for each operational screen and a shared root shell; branch access is a mock presentation restriction, not production security.
+- Load PDF generation only on user actions to keep browser-only download logic outside SSR execution.
