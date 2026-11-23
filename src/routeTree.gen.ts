@@ -12,10 +12,24 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ActiveServicesRouteImport } from './routes/active-services'
 import { Route as AppointmentsRouteImport } from './routes/appointments'
+import { Route as CampaignsRouteImport } from './routes/campaigns'
 import { Route as CreateServiceRouteImport } from './routes/create-service'
 import { Route as CustomersRouteImport } from './routes/customers'
+import { Route as EnquiriesRouteImport } from './routes/enquiries'
+import { Route as ExpensesRouteImport } from './routes/expenses'
+import { Route as GiftCardsRouteImport } from './routes/gift-cards'
+import { Route as HomepageManagementRouteImport } from './routes/homepage-management'
 import { Route as InvoicesRouteImport } from './routes/invoices'
+import { Route as MasterBoRouteImport } from './routes/master-bo'
+import { Route as MembershipsRouteImport } from './routes/memberships'
+import { Route as PackagesRouteImport } from './routes/packages'
 import { Route as PaymentsRouteImport } from './routes/payments'
+import { Route as ProductsRouteImport } from './routes/products'
+import { Route as QuickSaleRouteImport } from './routes/quick-sale'
+import { Route as ReportsRouteImport } from './routes/reports'
+import { Route as SalesDashboardRouteImport } from './routes/sales-dashboard'
+import { Route as ServicesRouteImport } from './routes/services'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as StaffRouteImport } from './routes/staff'
 import { Route as VisitsVisitIdRouteImport } from './routes/visits.$visitId'
 
@@ -34,6 +48,11 @@ const AppointmentsRoute = AppointmentsRouteImport.update({
   path: '/appointments',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CampaignsRoute = CampaignsRouteImport.update({
+  id: '/campaigns',
+  path: '/campaigns',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CreateServiceRoute = CreateServiceRouteImport.update({
   id: '/create-service',
   path: '/create-service',
@@ -44,14 +63,79 @@ const CustomersRoute = CustomersRouteImport.update({
   path: '/customers',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EnquiriesRoute = EnquiriesRouteImport.update({
+  id: '/enquiries',
+  path: '/enquiries',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExpensesRoute = ExpensesRouteImport.update({
+  id: '/expenses',
+  path: '/expenses',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GiftCardsRoute = GiftCardsRouteImport.update({
+  id: '/gift-cards',
+  path: '/gift-cards',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HomepageManagementRoute = HomepageManagementRouteImport.update({
+  id: '/homepage-management',
+  path: '/homepage-management',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const InvoicesRoute = InvoicesRouteImport.update({
   id: '/invoices',
   path: '/invoices',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MasterBoRoute = MasterBoRouteImport.update({
+  id: '/master-bo',
+  path: '/master-bo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MembershipsRoute = MembershipsRouteImport.update({
+  id: '/memberships',
+  path: '/memberships',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PackagesRoute = PackagesRouteImport.update({
+  id: '/packages',
+  path: '/packages',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PaymentsRoute = PaymentsRouteImport.update({
   id: '/payments',
   path: '/payments',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsRoute = ProductsRouteImport.update({
+  id: '/products',
+  path: '/products',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QuickSaleRoute = QuickSaleRouteImport.update({
+  id: '/quick-sale',
+  path: '/quick-sale',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportsRoute = ReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SalesDashboardRoute = SalesDashboardRouteImport.update({
+  id: '/sales-dashboard',
+  path: '/sales-dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const StaffRoute = StaffRouteImport.update({
@@ -69,10 +153,24 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/active-services': typeof ActiveServicesRoute
   '/appointments': typeof AppointmentsRoute
+  '/campaigns': typeof CampaignsRoute
   '/create-service': typeof CreateServiceRoute
   '/customers': typeof CustomersRoute
+  '/enquiries': typeof EnquiriesRoute
+  '/expenses': typeof ExpensesRoute
+  '/gift-cards': typeof GiftCardsRoute
+  '/homepage-management': typeof HomepageManagementRoute
   '/invoices': typeof InvoicesRoute
+  '/master-bo': typeof MasterBoRoute
+  '/memberships': typeof MembershipsRoute
+  '/packages': typeof PackagesRoute
   '/payments': typeof PaymentsRoute
+  '/products': typeof ProductsRoute
+  '/quick-sale': typeof QuickSaleRoute
+  '/reports': typeof ReportsRoute
+  '/sales-dashboard': typeof SalesDashboardRoute
+  '/services': typeof ServicesRoute
+  '/settings': typeof SettingsRoute
   '/staff': typeof StaffRoute
   '/visits/$visitId': typeof VisitsVisitIdRoute
 }
@@ -80,10 +178,24 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/active-services': typeof ActiveServicesRoute
   '/appointments': typeof AppointmentsRoute
+  '/campaigns': typeof CampaignsRoute
   '/create-service': typeof CreateServiceRoute
   '/customers': typeof CustomersRoute
+  '/enquiries': typeof EnquiriesRoute
+  '/expenses': typeof ExpensesRoute
+  '/gift-cards': typeof GiftCardsRoute
+  '/homepage-management': typeof HomepageManagementRoute
   '/invoices': typeof InvoicesRoute
+  '/master-bo': typeof MasterBoRoute
+  '/memberships': typeof MembershipsRoute
+  '/packages': typeof PackagesRoute
   '/payments': typeof PaymentsRoute
+  '/products': typeof ProductsRoute
+  '/quick-sale': typeof QuickSaleRoute
+  '/reports': typeof ReportsRoute
+  '/sales-dashboard': typeof SalesDashboardRoute
+  '/services': typeof ServicesRoute
+  '/settings': typeof SettingsRoute
   '/staff': typeof StaffRoute
   '/visits/$visitId': typeof VisitsVisitIdRoute
 }
@@ -92,10 +204,24 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/active-services': typeof ActiveServicesRoute
   '/appointments': typeof AppointmentsRoute
+  '/campaigns': typeof CampaignsRoute
   '/create-service': typeof CreateServiceRoute
   '/customers': typeof CustomersRoute
+  '/enquiries': typeof EnquiriesRoute
+  '/expenses': typeof ExpensesRoute
+  '/gift-cards': typeof GiftCardsRoute
+  '/homepage-management': typeof HomepageManagementRoute
   '/invoices': typeof InvoicesRoute
+  '/master-bo': typeof MasterBoRoute
+  '/memberships': typeof MembershipsRoute
+  '/packages': typeof PackagesRoute
   '/payments': typeof PaymentsRoute
+  '/products': typeof ProductsRoute
+  '/quick-sale': typeof QuickSaleRoute
+  '/reports': typeof ReportsRoute
+  '/sales-dashboard': typeof SalesDashboardRoute
+  '/services': typeof ServicesRoute
+  '/settings': typeof SettingsRoute
   '/staff': typeof StaffRoute
   '/visits/$visitId': typeof VisitsVisitIdRoute
 }
@@ -105,10 +231,24 @@ export interface FileRouteTypes {
     | '/'
     | '/active-services'
     | '/appointments'
+    | '/campaigns'
     | '/create-service'
     | '/customers'
+    | '/enquiries'
+    | '/expenses'
+    | '/gift-cards'
+    | '/homepage-management'
     | '/invoices'
+    | '/master-bo'
+    | '/memberships'
+    | '/packages'
     | '/payments'
+    | '/products'
+    | '/quick-sale'
+    | '/reports'
+    | '/sales-dashboard'
+    | '/services'
+    | '/settings'
     | '/staff'
     | '/visits/$visitId'
   fileRoutesByTo: FileRoutesByTo
@@ -116,10 +256,24 @@ export interface FileRouteTypes {
     | '/'
     | '/active-services'
     | '/appointments'
+    | '/campaigns'
     | '/create-service'
     | '/customers'
+    | '/enquiries'
+    | '/expenses'
+    | '/gift-cards'
+    | '/homepage-management'
     | '/invoices'
+    | '/master-bo'
+    | '/memberships'
+    | '/packages'
     | '/payments'
+    | '/products'
+    | '/quick-sale'
+    | '/reports'
+    | '/sales-dashboard'
+    | '/services'
+    | '/settings'
     | '/staff'
     | '/visits/$visitId'
   id:
@@ -127,10 +281,24 @@ export interface FileRouteTypes {
     | '/'
     | '/active-services'
     | '/appointments'
+    | '/campaigns'
     | '/create-service'
     | '/customers'
+    | '/enquiries'
+    | '/expenses'
+    | '/gift-cards'
+    | '/homepage-management'
     | '/invoices'
+    | '/master-bo'
+    | '/memberships'
+    | '/packages'
     | '/payments'
+    | '/products'
+    | '/quick-sale'
+    | '/reports'
+    | '/sales-dashboard'
+    | '/services'
+    | '/settings'
     | '/staff'
     | '/visits/$visitId'
   fileRoutesById: FileRoutesById
@@ -139,10 +307,24 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ActiveServicesRoute: typeof ActiveServicesRoute
   AppointmentsRoute: typeof AppointmentsRoute
+  CampaignsRoute: typeof CampaignsRoute
   CreateServiceRoute: typeof CreateServiceRoute
   CustomersRoute: typeof CustomersRoute
+  EnquiriesRoute: typeof EnquiriesRoute
+  ExpensesRoute: typeof ExpensesRoute
+  GiftCardsRoute: typeof GiftCardsRoute
+  HomepageManagementRoute: typeof HomepageManagementRoute
   InvoicesRoute: typeof InvoicesRoute
+  MasterBoRoute: typeof MasterBoRoute
+  MembershipsRoute: typeof MembershipsRoute
+  PackagesRoute: typeof PackagesRoute
   PaymentsRoute: typeof PaymentsRoute
+  ProductsRoute: typeof ProductsRoute
+  QuickSaleRoute: typeof QuickSaleRoute
+  ReportsRoute: typeof ReportsRoute
+  SalesDashboardRoute: typeof SalesDashboardRoute
+  ServicesRoute: typeof ServicesRoute
+  SettingsRoute: typeof SettingsRoute
   StaffRoute: typeof StaffRoute
   VisitsVisitIdRoute: typeof VisitsVisitIdRoute
 }
@@ -170,6 +352,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppointmentsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/campaigns': {
+      id: '/campaigns'
+      path: '/campaigns'
+      fullPath: '/campaigns'
+      preLoaderRoute: typeof CampaignsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/create-service': {
       id: '/create-service'
       path: '/create-service'
@@ -184,6 +373,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CustomersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/enquiries': {
+      id: '/enquiries'
+      path: '/enquiries'
+      fullPath: '/enquiries'
+      preLoaderRoute: typeof EnquiriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/expenses': {
+      id: '/expenses'
+      path: '/expenses'
+      fullPath: '/expenses'
+      preLoaderRoute: typeof ExpensesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gift-cards': {
+      id: '/gift-cards'
+      path: '/gift-cards'
+      fullPath: '/gift-cards'
+      preLoaderRoute: typeof GiftCardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/homepage-management': {
+      id: '/homepage-management'
+      path: '/homepage-management'
+      fullPath: '/homepage-management'
+      preLoaderRoute: typeof HomepageManagementRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/invoices': {
       id: '/invoices'
       path: '/invoices'
@@ -191,11 +408,74 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InvoicesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/master-bo': {
+      id: '/master-bo'
+      path: '/master-bo'
+      fullPath: '/master-bo'
+      preLoaderRoute: typeof MasterBoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/memberships': {
+      id: '/memberships'
+      path: '/memberships'
+      fullPath: '/memberships'
+      preLoaderRoute: typeof MembershipsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/packages': {
+      id: '/packages'
+      path: '/packages'
+      fullPath: '/packages'
+      preLoaderRoute: typeof PackagesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/payments': {
       id: '/payments'
       path: '/payments'
       fullPath: '/payments'
       preLoaderRoute: typeof PaymentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products': {
+      id: '/products'
+      path: '/products'
+      fullPath: '/products'
+      preLoaderRoute: typeof ProductsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/quick-sale': {
+      id: '/quick-sale'
+      path: '/quick-sale'
+      fullPath: '/quick-sale'
+      preLoaderRoute: typeof QuickSaleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reports': {
+      id: '/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof ReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sales-dashboard': {
+      id: '/sales-dashboard'
+      path: '/sales-dashboard'
+      fullPath: '/sales-dashboard'
+      preLoaderRoute: typeof SalesDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/staff': {
@@ -219,10 +499,24 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ActiveServicesRoute: ActiveServicesRoute,
   AppointmentsRoute: AppointmentsRoute,
+  CampaignsRoute: CampaignsRoute,
   CreateServiceRoute: CreateServiceRoute,
   CustomersRoute: CustomersRoute,
+  EnquiriesRoute: EnquiriesRoute,
+  ExpensesRoute: ExpensesRoute,
+  GiftCardsRoute: GiftCardsRoute,
+  HomepageManagementRoute: HomepageManagementRoute,
   InvoicesRoute: InvoicesRoute,
+  MasterBoRoute: MasterBoRoute,
+  MembershipsRoute: MembershipsRoute,
+  PackagesRoute: PackagesRoute,
   PaymentsRoute: PaymentsRoute,
+  ProductsRoute: ProductsRoute,
+  QuickSaleRoute: QuickSaleRoute,
+  ReportsRoute: ReportsRoute,
+  SalesDashboardRoute: SalesDashboardRoute,
+  ServicesRoute: ServicesRoute,
+  SettingsRoute: SettingsRoute,
   StaffRoute: StaffRoute,
   VisitsVisitIdRoute: VisitsVisitIdRoute,
 }

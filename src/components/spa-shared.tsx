@@ -4,6 +4,7 @@ import {Leaf,X,ArrowUpRight,Clock} from 'lucide-react';
 import {Button} from './ui/button';
 import {useSpa} from '@/lib/spa-context';
 import {money,type Visit} from '@/lib/spa-model';
+export {money,type Visit};
 export function Brand(){return <div className="brand"><div className="brand-mark"><Leaf size={27} strokeWidth={1.2}/></div><div><div className="brand-name">BODE</div><div className="brand-sub">Wellness Spa</div></div></div>}
 export function Status({status}:{status:string}){return <span className={`badge ${status.toLowerCase().replaceAll(' ','-')}`}>{status}</span>}
 export function PageHeading({eyebrow='BRANCH OPERATIONS',title,description,children}:{eyebrow?:string;title:string;description?:string;children?:ReactNode}){return <div className="page-heading"><div><div className="eyebrow">{eyebrow}</div><h1>{title}</h1>{description&&<p className="page-sub">{description}</p>}</div>{children&&<div className="flex gap-2 items-center">{children}</div>}</div>}

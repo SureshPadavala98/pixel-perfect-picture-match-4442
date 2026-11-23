@@ -12,4 +12,50 @@ it('keeps partial payments separate from completed service status',()=>{const v=
 it('never marks sharing sent when a sharing link is opened',()=>{const v=sample();v.sharing='Sharing initiated';expect(v.sharing).not.toBe('Confirmed sent');});
 it('prevents conflicting staff appointments',()=>{const data=seedData();const v=data.visits[0];if(!v)throw new Error('Missing visit');expect(available(data,'amr',v.date,'10:15',60,'amr-s1')).toBe(false);expect(available(data,'amr',v.date,'18:00',60,'amr-s1')).toBe(true);});
 it('additional services preserve the original visit and price history',()=>{const v=sample();const s=v.services[0];if(!s)throw new Error('Missing service');const next={...v,services:[...v.services,{...s,id:'additional',price:2499,name:'Classic Facial'}]};expect(next.id).toBe(v.id);expect(next.customerId).toBe(v.customerId);expect(next.services[0]?.price).toBe(2500);expect(next.services.length).toBe(2);});
+
+describe('Respark Backoffice and Shift models', () => {
+  it('correctly evaluates staff shift availability and weekly off', async () => {
+    const { isStaffOnShift } = await import('@/lib/spa-model');
+    const data = seedData();
+    const s1 = data.staff.find(s => s.id === 'amr-s1');
+    expect(s1).toBeDefined();
+    if (!s1) return;
+
+    // 2026-11-24 is Tuesday (s1 weekly off)
+    expect(isStaffOnShift(s1, '2026-11-24', '11:00')).toBe(false);
+
+    // 2026-11-25 is Wednesday (working day: 09:00 - 20:00)
+    expect(isStaffOnShift(s1, '2026-11-25', '11:00')).toBe(true);
+    expect(isStaffOnShift(s1, '2026-11-25', '08:30')).toBe(false); // Before shift starts (09:00)
+    expect(isStaffOnShift(s1, '2026-11-25', '19:30', 60)).toBe(false); // Ends at 20:30, after shift ends (20:00)
+    expect(isStaffOnShift(s1, '2026-11-25', '20:30')).toBe(false); // After shift ends
+  });
+
+  it('provides seeded service categories with gender groups and active status', () => {
+    const data = seedData();
+    expect(data.serviceCategories.length).toBeGreaterThan(0);
+    const cat = data.serviceCategories[0];
+    expect(cat).toHaveProperty('group');
+    expect(['Both', 'Female', 'Male']).toContain(cat.group);
+    expect(cat).toHaveProperty('assignedStaffIds');
+    expect(Array.isArray(cat.assignedStaffIds)).toBe(true);
+  });
+
+  it('provides product categories and retail products', () => {
+    const data = seedData();
+    expect(data.productCategories.length).toBeGreaterThan(0);
+    expect(data.products.length).toBeGreaterThan(0);
+    const prod = data.products[0];
+    expect(prod).toHaveProperty('price');
+    expect(prod).toHaveProperty('stock');
+  });
+
+  it('supports multiple membership types with validation rules', () => {
+    const data = seedData();
+    expect(data.memberships.length).toBeGreaterThan(0);
+    const types = data.memberships.map(m => m.type);
+    expect(types).toContain('Percentage');
+    expect(types).toContain('Fixed');
+  });
+});
 });
